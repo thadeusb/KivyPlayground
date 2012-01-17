@@ -4,16 +4,21 @@ import kivy
 
 from kivy.app import App
 from kivy.uix.widget import Widget
+from kivy.uix.label import Label
 from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
 from kivy.vector import Vector
 from kivy.factory import Factory
 from kivy.clock import Clock
+
+class WinText(Label): pass
 
 #: this has stuff defined in pong.kv to style it
 class PongGame(Widget):
     ball = ObjectProperty(None)
     player1 = ObjectProperty(None)
     player2 = ObjectProperty(None)
+    
+    win_text = WinText()
     
     def serve_ball(self, vel=(5,0)):
         self.ball.center = self.center
@@ -35,6 +40,13 @@ class PongGame(Widget):
         if (self.ball.right > self.width):
             self.player1.score += 1
             self.serve_ball(vel=(-4,0))
+            
+        if self.player1.score == 1:
+            self.win_text.text = 'Player 1 Wins!'
+            self.add_widget(self.win_text)
+        elif self.player2.score == 1:
+            self.win_text.text = 'Player 2 Wins!'
+            self.add_widget(self.win_text)
             
     def on_touch_move(self, touch):
         if touch.x < self.width / 3:
