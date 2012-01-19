@@ -10,15 +10,11 @@ from kivy.vector import Vector
 from kivy.factory import Factory
 from kivy.clock import Clock
 
-class WinText(Label): pass
-
 #: this has stuff defined in pong.kv to style it
 class PongGame(Widget):
     ball = ObjectProperty(None)
     player1 = ObjectProperty(None)
     player2 = ObjectProperty(None)
-    
-    win_text = WinText()
     
     def serve_ball(self, vel=(5,0)):
         self.ball.center = self.center
@@ -47,6 +43,8 @@ class PongGame(Widget):
         elif self.player2.score == 1:
             self.win_text.text = 'Player 2 Wins!'
             self.add_widget(self.win_text)
+            
+            
             
     def on_touch_move(self, touch):
         if touch.x < self.width / 3:
