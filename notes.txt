@@ -1,0 +1,10 @@
+PATH=$PATH:/home/thadeusb/Workspace/Android/android-sdk-linux/tools/:/home/thadeusb/Workspace/Android/android-sdk-linux/platform-tools
+
+./adb install -r ../../Kivy-1.0.9-android/bin/PongGame-1.0.6-debug.apk 
+
+python build.py --dir ~/Workspace/KivyPlayground/pong 
+    --package org.demo.pong 
+    --name "Pong Game" 
+    --version 1.0.6 debug 
+    
+    install
